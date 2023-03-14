@@ -28,15 +28,16 @@ public class UserController {
         return ResponseEntity.ok(allUsers);
     }
 
+    //HATEOAS here
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public EntityModel<User> getUserById(@PathVariable long id) {
         User user = userDaoService.findById(id);
 
         EntityModel<User> entityModel = EntityModel.of(user);
-        // WebMvcLinkBuilder need static import !
+        // WebMvcLinkBuilder need static import to call linkTo(methodOn()) !
         WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).getAllUsers());
-        entityModel.add(link.withRel("all-users"));
+        entityModel.add(link.withRel("all-users")); // field naming mapped to JSON in the browser
 
         return entityModel;
     }
