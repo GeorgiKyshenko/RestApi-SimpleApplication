@@ -5,6 +5,7 @@ Topics:
 - HATEOAS
 - H2 DB
 - Spring Security
+- Spring Boot Actuator
 - JSON Filtering - Static/Dynamic
 - Open API - Swagger
 - URI Versioning
